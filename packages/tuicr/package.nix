@@ -10,16 +10,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "tuicr";
-  version = "0.11.0";
+  version = "0.12.0";
 
   src = fetchFromGitHub {
     owner = "agavra";
     repo = "tuicr";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-Kbu5zMfmPZhNvsbDHfy/BQLzr54kovT5AsiUCJA71Xw=";
+    hash = "sha256-JzTbyX6S1W2o3bW2U890ukGJoMNuUUJ3ENQ4+lFvA/U=";
   };
 
-  cargoHash = "sha256-KgcKFRPYxjXWhR2BsjR4esTQB59a61xANdtZsAZ9vHk=";
+  cargoHash = "sha256-avRRVlAid23biYUu3vdJNVkaKqQbj/MalHz+w0xXa7w=";
 
   nativeBuildInputs = [
     pkg-config
