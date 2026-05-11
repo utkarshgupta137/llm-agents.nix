@@ -833,6 +833,16 @@ Nix packages for AI coding agents and development tools. Automatically updated d
 
 </details>
 <details>
+<summary><strong>codex-auth</strong> - CLI tool for switching Codex accounts</summary>
+
+- **Source**: source
+- **License**: MIT
+- **Homepage**: https://github.com/loongphy/codex-auth
+- **Usage**: `nix run github:numtide/llm-agents.nix#codex-auth -- --help`
+- **Nix**: [packages/codex-auth/package.nix](packages/codex-auth/package.nix)
+
+</details>
+<details>
 <summary><strong>context-hub</strong> - CLI for Context Hub - search and retrieve LLM-optimized docs and skills</summary>
 
 - **Source**: source
