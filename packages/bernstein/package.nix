@@ -36,14 +36,14 @@ let
 in
 python3.pkgs.buildPythonApplication rec {
   pname = "bernstein";
-  version = "1.10.4";
+  version = "1.10.6";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "chernistry";
     repo = "bernstein";
     tag = "v${version}";
-    hash = "sha256-3H4gGNk2fMxItS+iA7EpQPgYYTdzjGBqbiu8cgWVPo0=";
+    hash = "sha256-kCQcldBrAS6YHHs9uHTnclMqJGpjY9WG0+lGcSryPlA=";
   };
 
   # Upstream sometimes tags a release without bumping the version in
@@ -62,6 +62,7 @@ python3.pkgs.buildPythonApplication rec {
   ];
 
   dependencies = with python3.pkgs; [
+    asn1crypto
     click
     cryptography
     defusedxml
@@ -91,6 +92,7 @@ python3.pkgs.buildPythonApplication rec {
   ];
 
   pythonRelaxDeps = [
+    "click"
     "cryptography"
     "openai"
     "opentelemetry-api"
