@@ -8,8 +8,6 @@ regenerated) and fetchCargoVendor (cargoHash must be recalculated) on
 each version bump.  nix-update cannot handle either of these.
 """
 
-import re
-import subprocess
 import sys
 from pathlib import Path
 
@@ -23,6 +21,7 @@ from updater import (
     load_hashes,
     save_hashes,
     should_update,
+    strip_workspace_entries,
 )
 from updater.hash import DUMMY_SHA256_HASH
 from updater.nix import NixCommandError
@@ -34,30 +33,6 @@ BUN_NIX = PKG_DIR / "bun.nix"
 
 OWNER = "can1357"
 REPO = "oh-my-pi"
-
-
-def strip_workspace_entries(bun_nix: Path) -> None:
-    """Remove workspace copyPathToStore entries from bun.nix.
-
-    Workspace packages resolve relative to bun.nix, which is in
-    packages/omp/ -- not the source root.  The bun2nix hook resolves
-    workspace deps from the source tree during bun install, so these
-    entries are unnecessary and would fail to evaluate.
-    """
-    text = bun_nix.read_text()
-    text = re.sub(r"  copyPathToStore,\n", "", text)
-    text = re.sub(
-        r"  \"@oh-my-pi/[^\"]*\"\s*=\s*copyPathToStore\s+[^;]+;\n",
-        "",
-        text,
-    )
-    bun_nix.write_text(text)
-    subprocess.run(
-        ["nix", "fmt", "--", str(bun_nix)],
-        cwd=FLAKE_ROOT,
-        check=True,
-        capture_output=True,
-    )
 
 
 def main() -> None:
@@ -95,7 +70,7 @@ def main() -> None:
         FLAKE_ROOT,
         ref_prefix="v",
     )
-    strip_workspace_entries(BUN_NIX)
+    strip_workspace_entries(BUN_NIX, "@oh-my-pi", FLAKE_ROOT)
 
     # Step 3: Calculate cargoHash
     try:
