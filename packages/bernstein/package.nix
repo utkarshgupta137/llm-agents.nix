@@ -81,6 +81,7 @@ python3.pkgs.buildPythonApplication rec {
     pyfiglet
     python-dotenv
     pyyaml
+    reportlab
     rich
     setproctitle
     signxml
