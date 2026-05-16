@@ -28,6 +28,7 @@
   kdePackages,
   webkitgtk_4_1,
   wrapGAppsHook4,
+  unpinCargoMsrvHook,
 }:
 let
   pnpm = pnpm_10;
@@ -74,6 +75,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
     substituteInPlace apps/desktop/src/lib/backend/tauri.ts \
       --replace-fail 'checkUpdate = tauriCheck;' 'checkUpdate = () => null;'
+
   '';
 
   cargoHash = "sha256-CxjZeIzrQuRXGc6FKt3dDhsR7MwO1un75A7D5GqVdCI=";
@@ -86,6 +88,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   };
 
   nativeBuildInputs = [
+    unpinCargoMsrvHook
     cacert # required by turbo
     cargo-tauri.hook
     cmake # required by the `zlib-sys` crate
