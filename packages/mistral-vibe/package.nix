@@ -99,6 +99,17 @@ let
     packageOverrides = _pyfinal: pyprev: {
       inherit textual-speedups tree-sitter-bash;
 
+      # mistral-vibe pins textual==8.2.4. Textual 8.2.5 removed the built-in
+      # "textual-ansi" theme that vibe sets at startup, causing
+      # `Theme 'textual-ansi' has not been registered` (issue #4914).
+      textual = pyprev.textual.overridePythonAttrs (old: rec {
+        version = "8.2.4";
+        src = old.src.override {
+          tag = "v${version}";
+          hash = "sha256-827cm9pcj1o1FYeaoWKCJ6dEyXeDop4kYd205cySTfg=";
+        };
+      });
+
       # mistral-vibe 2.7.5 imports `deep_update` from
       # `pydantic_settings.sources.base`, a re-export added in 2.13.
       pydantic-settings = pyprev.pydantic-settings.overridePythonAttrs (_: rec {
@@ -220,7 +231,6 @@ python.pkgs.buildPythonApplication rec {
     "pydantic"
     "pydantic-settings"
     "pyyaml"
-    "textual"
     "watchfiles"
     "zstandard"
   ];
