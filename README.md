@@ -810,6 +810,16 @@ Nix packages for AI coding agents and development tools. Automatically updated d
 
 </details>
 <details>
+<summary><strong>cubic</strong> - AI code review CLI from cubic.dev - fast pre-flight review before you push</summary>
+
+- **Source**: binary
+- **License**: unfree
+- **Homepage**: https://cubic.dev
+- **Usage**: `nix run github:numtide/llm-agents.nix#cubic -- --help`
+- **Nix**: [packages/cubic/package.nix](packages/cubic/package.nix)
+
+</details>
+<details>
 <summary><strong>hunk</strong> - Terminal diff viewer for agentic changesets</summary>
 
 - **Source**: source
