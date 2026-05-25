@@ -360,6 +360,16 @@ Nix packages for AI coding agents and development tools. Automatically updated d
 - **Nix**: [packages/qwen-code/package.nix](packages/qwen-code/package.nix)
 
 </details>
+<details>
+<summary><strong>reasonix</strong> - DeepSeek-native AI coding agent for your terminal</summary>
+
+- **Source**: source
+- **License**: MIT
+- **Homepage**: https://github.com/esengine/DeepSeek-Reasonix
+- **Usage**: `nix run github:numtide/llm-agents.nix#reasonix -- --help`
+- **Nix**: [packages/reasonix/package.nix](packages/reasonix/package.nix)
+
+</details>
 
 ### AI Assistants
 
