@@ -77,6 +77,11 @@ stdenv.mkDerivation {
 
     cp -r dist node_modules package.json $out/lib/oh-my-opencode/
 
+    # Remove broken workspace symlinks (monorepo workspace packages
+    # aren't needed at runtime — the CLI bundle is self-contained)
+    find $out/lib/oh-my-opencode/node_modules/@oh-my-opencode -xtype l -delete 2>/dev/null || true
+    rmdir $out/lib/oh-my-opencode/node_modules/@oh-my-opencode 2>/dev/null || true
+
     makeWrapper ${bun}/bin/bun $out/bin/oh-my-opencode \
       --add-flags "run $out/lib/oh-my-opencode/dist/cli/index.js"
 

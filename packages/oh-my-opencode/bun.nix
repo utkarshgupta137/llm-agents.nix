@@ -6,11 +6,11 @@
 # or `pkgs.callPackage` if you wish to handle
 # it manually.
 {
-  copyPathToStore,
   fetchurl,
   ...
 }:
 {
+  # Workspace packages are in the source tree, resolved at build time
   "@ast-grep/cli-darwin-arm64@0.41.1" = fetchurl {
     url = "https://registry.npmjs.org/@ast-grep/cli-darwin-arm64/-/cli-darwin-arm64-0.41.1.tgz";
     hash = "sha512-30lrXtyDB+16WS89Bk8sufA5TVUczyQye4PoIYLxZr+PRbPW7thpxHwBwGWL6QvPvUtlElrCe4seA1CEwFxeFA==";
@@ -159,15 +159,6 @@
     url = "https://registry.npmjs.org/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.3.tgz";
     hash = "sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ==";
   };
-  "@oh-my-opencode/agents-md-core" = copyPathToStore ./packages/agents-md-core;
-  "@oh-my-opencode/ast-grep-core" = copyPathToStore ./packages/ast-grep-core;
-  "@oh-my-opencode/ast-grep-mcp" = copyPathToStore ./packages/ast-grep-mcp;
-  "@oh-my-opencode/boulder-state" = copyPathToStore ./packages/boulder-state;
-  "@oh-my-opencode/comment-checker-core" = copyPathToStore ./packages/comment-checker-core;
-  "@oh-my-opencode/hashline-core" = copyPathToStore ./packages/hashline-core;
-  "@oh-my-opencode/model-core" = copyPathToStore ./packages/model-core;
-  "@oh-my-opencode/rules-engine" = copyPathToStore ./packages/rules-engine;
-  "@oh-my-opencode/utils" = copyPathToStore ./packages/utils;
   "@opencode-ai/plugin@1.15.4" = fetchurl {
     url = "https://registry.npmjs.org/@opencode-ai/plugin/-/plugin-1.15.4.tgz";
     hash = "sha512-5KAhUnks8GNlqRIax+3cs/ZT2UK74/MNdl4w846ysYdivb38fIm+X9R69ljQtRKyQY7rtga4JUQuARJMSExQqQ==";
