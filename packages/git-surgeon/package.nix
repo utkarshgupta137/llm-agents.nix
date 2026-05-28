@@ -7,16 +7,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "git-surgeon";
-  version = "0.1.16";
+  version = "0.1.17";
 
   src = fetchFromGitHub {
     owner = "raine";
     repo = "git-surgeon";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-+0wIByswyAZFTE20VysejdfGTknzCsxRl3GKzPzWQPE=";
+    hash = "sha256-SeXHYZwhwvkYxFHW694Cp1VKKeehxgOdfKqShuPI7M4=";
   };
 
-  cargoHash = "sha256-Zh6sk1DYamyxEbec0V8ukCnGpyQIDNqd0+Y9x66rmMA=";
+  cargoHash = "sha256-PbhASsdDxmVcIzV+oHIbpX70zjSeNvkwGcbhQRi88rE=";
 
   postInstall = ''
     install -d $out/share/git-surgeon
