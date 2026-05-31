@@ -49,12 +49,6 @@ stdenv.mkDerivation rec {
     chmod -R u+w $out/libexec/memvid-cli
     chmod 755 $out/libexec/memvid-cli/memvid
 
-    for shared_object in $out/libexec/memvid-cli/*.so; do
-      chmod 755 "$shared_object"
-    done
-
-    autoPatchelf $out/libexec/memvid-cli
-
     makeWrapper $out/libexec/memvid-cli/memvid $out/bin/memvid \
       --prefix LD_LIBRARY_PATH : "$out/libexec/memvid-cli"
 
@@ -63,6 +57,8 @@ stdenv.mkDerivation rec {
 
   doInstallCheck = true;
 
+  # No versionCheckHook: --version prints the bundled memvid-core version,
+  # not the npm package version.
   installCheckPhase = ''
     runHook preInstallCheck
 
@@ -80,6 +76,7 @@ stdenv.mkDerivation rec {
     homepage = "https://memvid.com";
     changelog = "https://github.com/memvid/memvid/releases";
     license = licenses.asl20;
+    # CLI is closed-source; upstream repo only contains the memvid-core library.
     sourceProvenance = with sourceTypes; [
       binaryNativeCode
     ];
