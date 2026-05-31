@@ -24,7 +24,7 @@ buildNpmPackage rec {
   nativeInstallCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;
 
-  passthru.category = "Utilities";
+  passthru.category = "Memory & Code Intelligence";
 
   meta = {
     description = "Semantic code intelligence for AI coding agents";

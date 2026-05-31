@@ -69,7 +69,7 @@ buildGoModule rec {
       }
   '';
 
-  passthru.category = "Utilities";
+  passthru.category = "Sandboxing & Isolation";
 
   meta = with lib; {
     description = "Lightweight, container-free sandbox for running commands with network and filesystem restrictions";

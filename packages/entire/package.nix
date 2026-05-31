@@ -41,7 +41,7 @@
   ];
   versionCheckProgramArg = [ "version" ];
 
-  passthru.category = "Utilities";
+  passthru.category = "Usage Analytics";
 
   meta = with lib; {
     description = "CLI tool that captures AI agent sessions and links them to code changes";

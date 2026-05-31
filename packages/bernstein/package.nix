@@ -128,7 +128,7 @@ python3.pkgs.buildPythonApplication rec {
   ];
   versionCheckProgramArg = [ "--version" ];
 
-  passthru.category = "AI Coding Agents";
+  passthru.category = "Workflow & Project Management";
 
   meta = with lib; {
     description = "Multi-agent orchestrator for CLI coding agents — spawn, coordinate, and manage parallel AI agents";

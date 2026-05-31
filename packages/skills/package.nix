@@ -49,7 +49,7 @@ stdenv.mkDerivation rec {
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
 
-  passthru.category = "Claude Code Ecosystem";
+  passthru.category = "Skills & Plugins";
 
   meta = with lib; {
     description = "The open agent skills tool for installing and managing skills across AI coding agents";

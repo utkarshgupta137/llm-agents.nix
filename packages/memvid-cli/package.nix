@@ -69,7 +69,7 @@ stdenv.mkDerivation rec {
     runHook postInstallCheck
   '';
 
-  passthru.category = "Utilities";
+  passthru.category = "Memory & Code Intelligence";
 
   meta = with lib; {
     description = "AI memory CLI - crash-safe, single-file storage with semantic search";
