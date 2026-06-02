@@ -13,16 +13,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "nono";
-  version = "0.61.0";
+  version = "0.61.1";
 
   src = fetchFromGitHub {
     owner = "always-further";
     repo = "nono";
     rev = "v${version}";
-    hash = "sha256-4ZcYqU0p3C9a2akOFYqyltVyAIsmafVTWtc3uxzF+I4=";
+    hash = "sha256-y5oMR5Vawf/1QUj3ACDdqAjKT+Q2gizRfKkal340EP8=";
   };
 
-  cargoHash = "sha256-6Zdvf7W8WMm2lGfgSb+PZk2h+r2hMU2CbByfOdCO41E=";
+  cargoHash = "sha256-Oy/IqAK5ml1vu0eee+pF5pRjzk0Na/Fb04e1Mx0d924=";
 
   # `if let` guards in match arms require Rust >= 1.95; rewrite the single
   # use until nixpkgs ships a new enough rustc.
