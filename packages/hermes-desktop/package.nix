@@ -19,16 +19,16 @@ let
 in
 buildNpmPackage rec {
   pname = "hermes-desktop";
-  version = "0.5.2";
+  version = "0.5.5";
 
   src = fetchFromGitHub {
     owner = "fathah";
     repo = "hermes-desktop";
     tag = "v${version}";
-    hash = "sha256-qGOFqLku/L/lSZm+nO0qJsu/IYOcCT9DA86ezOPJviU=";
+    hash = "sha256-UCwLO/bySaDnf5PjLmH9J7EFoe5R4FFKijujryWbHrk=";
   };
 
-  npmDepsHash = "sha256-zeIEMalRveicIdXk99kBttVuvuxyHJgDiMmvgSreaIA=";
+  npmDepsHash = "sha256-S+PoK9k5SjvMyZ/SES4wjz1fT8CG3iOjr4dXCDyzEd8=";
   npmDepsFetcherVersion = 2;
 
   # Upstream postinstall runs electron-builder install-app-deps and husky;
