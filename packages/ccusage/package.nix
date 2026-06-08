@@ -22,18 +22,18 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "ccusage";
-  version = "20.0.6";
+  version = "20.1.0";
 
   src = fetchFromGitHub {
     owner = "ryoppippi";
     repo = "ccusage";
     rev = "v${version}";
-    hash = "sha256-uf/FlPprxx4jh74YwjmYMtoIHpTkKrWTLetbNoYiFv4=";
+    hash = "sha256-mAa/+hrEJCPCscwelnrXG7+Vfe1J9DLjJ4G9+vqdfXY=";
   };
 
   sourceRoot = "${src.name}/rust";
 
-  cargoHash = "sha256-izA2Gs5nPmt0zn6/e1xM80vyyQHYKGEUDpUFRpyFiB8=";
+  cargoHash = "sha256-itCokvBe9OjbWW/VqVyLbLYqSzSVYMbYTAUE/aWrQEU=";
 
   cargoBuildFlags = [
     "-p"
