@@ -155,6 +155,7 @@ python3.pkgs.buildPythonApplication rec {
     changelog = "https://github.com/dmarzzz/VoxTerm/releases/tag/v${version}";
     license = lib.licenses.mit;
     sourceProvenance = with lib.sourceTypes; [ fromSource ];
+    maintainers = with lib.maintainers; [ zimbatm ];
     # macOS support requires unpackaged MLX backends; Linux-only for now.
     platforms = lib.platforms.linux;
     mainProgram = "voxterm";
