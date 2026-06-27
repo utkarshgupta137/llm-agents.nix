@@ -10,12 +10,7 @@
   versionData ? builtins.fromJSON (builtins.readFile ./hashes.json),
   version ? versionData.version,
   hash ? versionData.hash,
-  src ? fetchFromGitHub {
-    owner = "zed-industries";
-    repo = "codex-acp";
-    rev = "v${version}";
-    inherit hash;
-  },
+  src ? null,
   sourceRoot ? "source",
   cargoVendor ? {
     cargoHash = versionData.cargoHash;
@@ -32,10 +27,27 @@
   codexBwrapSourceDir ? "${codexSrc}/codex-rs/vendor/bubblewrap",
   librusty_v8 ? mkRustyV8Archive versionData.librusty_v8,
 }:
+let
+  # `src` cannot be exposed as a bare callPackage argument because it collides
+  # with the deprecated `pkgs.src` alias (which throws on access). default.nix
+  # passes `src = null`, so fall back to the upstream tarball here unless a
+  # caller overrides it via .override { src = ...; }.
+  actualSrc =
+    if src != null then
+      src
+    else
+      fetchFromGitHub {
+        owner = "zed-industries";
+        repo = "codex-acp";
+        rev = "v${version}";
+        inherit hash;
+      };
+in
 rustPlatform.buildRustPackage (
   {
     pname = "codex-acp";
-    inherit version src sourceRoot;
+    inherit version sourceRoot;
+    src = actualSrc;
 
     env = {
       RUSTY_V8_ARCHIVE = librusty_v8;

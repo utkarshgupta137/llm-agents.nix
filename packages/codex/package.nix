@@ -15,12 +15,7 @@
   versionData ? builtins.fromJSON (builtins.readFile ./hashes.json),
   version ? versionData.version,
   hash ? versionData.hash,
-  src ? fetchFromGitHub {
-    owner = "openai";
-    repo = "codex";
-    tag = "rust-v${version}";
-    inherit hash;
-  },
+  src ? null,
   sourceRoot ? "source/codex-rs",
   cargoVendor ? {
     cargoHash = versionData.cargoHash;
@@ -39,6 +34,21 @@
 }:
 
 let
+  # `src` cannot be exposed as a bare callPackage argument because it collides
+  # with the deprecated `pkgs.src` alias (which throws on access). default.nix
+  # passes `src = null`, so fall back to the upstream tarball here unless a
+  # caller overrides it via .override { src = ...; }.
+  actualSrc =
+    if src != null then
+      src
+    else
+      fetchFromGitHub {
+        owner = "openai";
+        repo = "codex";
+        tag = "rust-v${version}";
+        inherit hash;
+      };
+
   # codex-realtime-webrtc pulls in livekit's webrtc-sys on macOS, whose
   # build.rs would download a ~300MB prebuilt libwebrtc archive at build
   # time. Prefetch it as a fixed-output derivation and point the crate at
@@ -63,7 +73,8 @@ in
 rustPlatform.buildRustPackage (
   {
     pname = "codex";
-    inherit version src sourceRoot;
+    inherit version sourceRoot;
+    src = actualSrc;
 
     cargoBuildFlags = [
       "--package"
