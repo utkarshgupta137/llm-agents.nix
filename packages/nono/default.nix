@@ -7,4 +7,5 @@
 pkgs.callPackage ./package.nix {
   inherit flake;
   inherit (perSystem.self) unpinCargoMsrvHook;
+  autoPatchelfHook = perSystem.self.formatelf;
 }
