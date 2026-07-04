@@ -114,11 +114,11 @@ let
       # mistral-vibe 2.7.5 imports `deep_update` from
       # `pydantic_settings.sources.base`, a re-export added in 2.13.
       pydantic-settings = pyprev.pydantic-settings.overridePythonAttrs (_: rec {
-        version = "2.13.1";
+        version = "2.14.2";
         src = fetchPypi {
           pname = "pydantic_settings";
           inherit version;
-          hash = "sha256-tMEYR7FSN/sBceFGK/VA4pSv+5uG202apcAXML2+QCU=";
+          hash = "sha256-wZ3WSxkJfx3oAYTwzHsCcqE65uFwy/JAo+J+OB7RSl8=";
         };
       });
 
