@@ -870,6 +870,16 @@ Nix packages for AI coding agents and development tools. Automatically updated d
 
 </details>
 <details>
+<summary><strong>open-code-review</strong> - AI-powered code review CLI — battle-tested at Alibaba's scale. Hybrid architecture: deterministic pipelines + LLM Agent with line-level comments.</summary>
+
+- **Source**: binary
+- **License**: Apache-2.0
+- **Homepage**: https://github.com/alibaba/open-code-review
+- **Usage**: `nix run github:numtide/llm-agents.nix#open-code-review -- --help`
+- **Nix**: [packages/open-code-review/package.nix](packages/open-code-review/package.nix)
+
+</details>
+<details>
 <summary><strong>plannotator</strong> - Interactive plan and code review tool for AI coding agents</summary>
 
 - **Source**: source
