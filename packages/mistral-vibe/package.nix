@@ -171,7 +171,16 @@ python.pkgs.buildPythonApplication rec {
   build-system = with python.pkgs; [
     hatchling
     hatch-vcs
+    editables
   ];
+
+  # Upstream pins exact build-backend versions (hatchling==x.y.z); strip the
+  # pins so the nixpkgs-provided versions satisfy pypa build.
+  postPatch = ''
+    substituteInPlace pyproject.toml \
+      --replace-fail 'requires = ["hatchling==1.30.1", "hatch-vcs==0.5.0", "editables==0.6"]' \
+        'requires = ["hatchling", "hatch-vcs", "editables"]'
+  '';
 
   dependencies = with python.pkgs; [
     agent-client-protocol
