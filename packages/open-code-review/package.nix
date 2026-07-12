@@ -2,7 +2,6 @@
   lib,
   stdenv,
   fetchurl,
-  autoPatchelfHook,
   versionCheckHook,
   versionCheckHomeHook,
 }:
@@ -31,10 +30,7 @@ stdenv.mkDerivation {
     hash = hashes.${platform};
   };
 
-  # Linux binaries are dynamically linked; use autoPatchelfHook to resolve libs.
-  nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [ autoPatchelfHook ];
-
-  # Mark as prebuilt so Nix doesn't try to unpack an archive.
+  # Upstream releases are single statically linked Go binaries.
   dontUnpack = true;
 
   installPhase = ''
@@ -44,8 +40,7 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  # Disable installCheck when cross-compiling — can't execute foreign-arch binaries.
-  doInstallCheck = stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+  doInstallCheck = true;
   nativeInstallCheckInputs = [
     versionCheckHook
     versionCheckHomeHook
@@ -55,7 +50,7 @@ stdenv.mkDerivation {
   passthru.category = "Code Review";
 
   meta = with lib; {
-    description = "AI-powered code review CLI — battle-tested at Alibaba's scale. Hybrid architecture: deterministic pipelines + LLM Agent with line-level comments.";
+    description = "AI-powered code review CLI";
     homepage = "https://github.com/alibaba/open-code-review";
     changelog = "https://github.com/alibaba/open-code-review/releases/tag/v${version}";
     license = licenses.asl20;

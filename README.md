@@ -870,7 +870,7 @@ Nix packages for AI coding agents and development tools. Automatically updated d
 
 </details>
 <details>
-<summary><strong>open-code-review</strong> - AI-powered code review CLI — battle-tested at Alibaba's scale. Hybrid architecture: deterministic pipelines + LLM Agent with line-level comments.</summary>
+<summary><strong>open-code-review</strong> - AI-powered code review CLI</summary>
 
 - **Source**: binary
 - **License**: Apache-2.0
