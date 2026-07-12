@@ -108,6 +108,7 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
     rich-click
     ruamel-yaml
     toml
+    tomlkit
     watchdog
   ];
 
