@@ -156,5 +156,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     maintainers = with flake.lib.maintainers; [ mic92 ];
     mainProgram = "gitbutler-tauri";
     platforms = platforms.linux ++ platforms.darwin;
+    # gtk4 4.22.4 currently fails to build on darwin in nixpkgs; unmark once
+    # nixpkgs ships a fixed gtk4.
+    broken = stdenv.hostPlatform.isDarwin;
   };
 })
