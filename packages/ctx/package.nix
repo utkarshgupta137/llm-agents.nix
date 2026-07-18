@@ -3,10 +3,6 @@
   fetchFromGitHub,
   flake,
   rustPlatform,
-  pkg-config,
-  openssl,
-  stdenv,
-  libiconv,
   versionCheckHook,
   versionCheckHomeHook,
 }:
@@ -29,12 +25,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     "ctx"
   ];
 
-  nativeBuildInputs = [ pkg-config ];
-
-  buildInputs = [ openssl ] ++ lib.optionals stdenv.hostPlatform.isDarwin [ libiconv ];
-
-  cargoTestFlags = finalAttrs.cargoBuildFlags;
-
   # CoreML acquisition tests fail in Nix sandbox.
   doCheck = false;
 
@@ -46,14 +36,14 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   passthru.category = "Utilities";
 
-  meta = with lib; {
+  meta = {
     description = "Search the coding agent history already on your machine";
     homepage = "https://github.com/ctxrs/ctx";
     changelog = "https://github.com/ctxrs/ctx/releases/tag/v${finalAttrs.version}";
-    license = licenses.asl20;
-    sourceProvenance = with sourceTypes; [ fromSource ];
+    license = lib.licenses.asl20;
+    sourceProvenance = with lib.sourceTypes; [ fromSource ];
     maintainers = with flake.lib.maintainers; [ mulatta ];
     mainProgram = "ctx";
-    platforms = platforms.unix;
+    platforms = lib.platforms.unix;
   };
 })
