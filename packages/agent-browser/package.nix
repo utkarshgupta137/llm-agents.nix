@@ -14,7 +14,7 @@
 
 let
   pname = "agent-browser";
-  version = "0.32.1";
+  version = "0.32.2";
 
   # Vendored Geist variable font (OFL-1.1) pinned to a specific upstream
   # commit so the dashboard's next/font/local build is fully offline.
@@ -29,7 +29,7 @@ let
     # Upstream has a branch and a tag both named v<version>, so the plain
     # archive URL is ambiguous ("multiple possibilities"). Pin the tag ref.
     tag = "v${version}";
-    hash = "sha256-xXJSLEs+h6YcKBazMRGGdSrfSl+lx7tskwVw7NqYd1M=";
+    hash = "sha256-d4eocgiBoNe7iCBl5cBHwglbyPAqLo11V3T5yZd9EUI=";
   };
 
   dashboard = stdenv.mkDerivation {
@@ -46,7 +46,7 @@ let
       pname = "${pname}-dashboard";
       inherit version src;
       pnpm = pnpm_11;
-      hash = "sha256-IbfZEJ5ogWFD2uBANs6iieU6KGkwMqu86zqTwlx2fg4=";
+      hash = "sha256-uY+Zm/LtNn3+qf4B/p3/nzn5Emj6C7+S8X4q8wr+Ow0=";
       fetcherVersion = 4;
     };
 
@@ -80,7 +80,7 @@ rustPlatform.buildRustPackage {
 
   sourceRoot = "source/cli";
 
-  cargoHash = "sha256-RdUS+tRqwePDish4G0fVoVgHo0zGHBkm4qgJlOCJyJU=";
+  cargoHash = "sha256-zNAlMe3CllEuJ+MTGf7F3c0X+MKiFdfXtdi3THABkOo=";
 
   nativeBuildInputs = lib.optional stdenv.hostPlatform.isLinux makeBinaryWrapper;
   buildInputs = lib.optional stdenv.hostPlatform.isLinux chromium;
