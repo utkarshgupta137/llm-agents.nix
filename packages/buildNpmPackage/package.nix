@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs }:
 # Re-export of nixpkgs' buildNpmPackage with an eval-time guard.
 #
 # Several packages here set `npmDepsFetcherVersion = 2`, whose FOD output (and

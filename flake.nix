@@ -61,11 +61,9 @@
 
       # Every package under packages/, built against the given package set.
       #
-      # A package with only a package.nix is called from a scope containing
-      # all in-repo packages plus shared helpers, so dependencies like
-      # `wrapBuddy` or `platformSource` resolve by argument name. A package
-      # with a default.nix is called with { pkgs, packages, flake, inputs,
-      # system }.
+      # Each package.nix is called from a scope containing all in-repo
+      # packages plus shared helpers, so dependencies like `wrapBuddy` or
+      # `platformSource` resolve by argument name.
       mkPackagesFor =
         pkgs:
         let
@@ -81,25 +79,10 @@
               # bun2nix builder set (hook, fetchBunDeps, ...); the `bun2nix`
               # scope attribute is the CLI package.
               bun2nixLib = (pkgs.extend inputs.bun2nix.overlays.default).bun2nix;
+              # makeScope reserves `packages`, so expose the package set as allPackages.
+              allPackages = packages;
             }
-            // lib.genAttrs packageNames (
-              name:
-              let
-                dir = ./packages + "/${name}";
-              in
-              if builtins.pathExists (dir + "/default.nix") then
-                callWith {
-                  inherit
-                    pkgs
-                    packages
-                    flake
-                    inputs
-                    system
-                    ;
-                } (import dir)
-              else
-                self.callPackage (dir + "/package.nix") { }
-            )
+            // lib.genAttrs packageNames (name: self.callPackage (./packages + "/${name}/package.nix") { })
           );
 
           # Only the packages, without the scope plumbing and helpers.

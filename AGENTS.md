@@ -20,7 +20,7 @@
 
 - Indentation: 2 spaces; avoid tabs.
 - Nix: small, composable derivations; prefer `buildNpmPackage`/`rustPlatform.buildRustPackage`/`stdenv.mkDerivation` as in existing packages.
-- File layout per package: `package.nix` (definition), `update.py` (optional custom updater), `nix-update-args` (optional nix-update flags). `package.nix` is called from a scope that contains all in-repo packages and helpers (`buildNpmPackage`, `wrapBuddy`, `formatelf`, `versionCheckHomeHook`, `bun2nixLib`, `platformSource`, `flake`, ...), so declaring one of these names as a function argument is enough. A `default.nix` is only needed when a package cannot be expressed as a plain `callPackage` of `package.nix`.
+- File layout per package: `package.nix` (definition), `update.py` (optional custom updater), `nix-update-args` (optional nix-update flags). `package.nix` is called from a scope that contains all in-repo packages and helpers (`buildNpmPackage`, `wrapBuddy`, `formatelf`, `versionCheckHomeHook`, `bun2nixLib`, `platformSource`, `flake`, ...), so declaring one of these names as a function argument is enough.
 - Tools via treefmt: nixfmt, deadnix, shfmt, shellcheck, mdformat, yamlfmt, taplo. Always run `nix fmt` before committing.
 
 ### Updating Packages
@@ -224,7 +224,7 @@ fi
 
 ### Common Issues and Solutions
 
-1. **npm packages**: Declare `buildNpmPackage` as a `package.nix` argument; the scope provides the in-repo builder (packages/buildNpmPackage), which is nixpkgs' builder plus an eval-time guard that fails fast with a helpful message when the consumer's nixpkgs predates `fetcherVersion = 2`, instead of a cryptic FOD hash mismatch (#4320). Do not use `pkgs.buildNpmPackage` in a `default.nix`.
+1. **npm packages**: Declare `buildNpmPackage` as a `package.nix` argument; the scope provides the in-repo builder (packages/buildNpmPackage), which is nixpkgs' builder plus an eval-time guard that fails fast with a helpful message when the consumer's nixpkgs predates `fetcherVersion = 2`, instead of a cryptic FOD hash mismatch (#4320). Do not use `pkgs.buildNpmPackage`.
 
 1. **Rust packages with git dependencies**: May fail during cargo vendoring if dependencies have workspace inheritance issues. Consider using pre-built binaries as a workaround.
 

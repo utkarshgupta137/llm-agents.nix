@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  ...
 }:
 # A derivation that references all flake inputs to ensure they get cached
 pkgs.runCommand "flake-inputs" { } ''

@@ -2,7 +2,6 @@
   flake,
   inputs,
   pkgs,
-  ...
 }:
 # treefmt with config
 let
